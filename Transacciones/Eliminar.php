@@ -1,5 +1,6 @@
 <?php
 
+date_default_timezone_set('America/Santo_Domingo');
 require_once '../Helpers/Utilities.php';
 require_once '../FileHandler/IFileHandler.php';
 require_once '../FileHandler/FileHandlerBase.php';

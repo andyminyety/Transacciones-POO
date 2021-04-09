@@ -9,11 +9,8 @@ $(document).ready(function(){
         if(id !== null && id !== undefined && id !== "" ){
             window.location.href = "Transacciones/Eliminar.php?id=" + id;            
         }        
-
     }
-    
-   });
-    
    
-
+   });
+   
 });
