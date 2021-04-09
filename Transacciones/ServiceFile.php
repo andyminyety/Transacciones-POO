@@ -1,0 +1,86 @@
+<?php
+
+ class ServiceFile{   
+
+    public $fileHandler;
+    public $Directory;
+    public $filename;
+    private $Utilities;
+
+    public function __construct($isRoot = false){
+
+        $SemiRoot = ($isRoot) ? "Transacciones/" : "";
+        $this->Directory = "{$SemiRoot}data";
+        $this->filename = "Transacciones";
+        $this->Utilities = new Utilities();
+        $this->fileHandler = new JsonFileHandler
+        ($this->Directory,$this->filename);
+    }
+
+    public function Add($item){
+
+        $Transactions = $this->GetList();
+
+        if(count($Transactions) == 0){
+            $item->Id = 1;
+
+        }else{
+
+            $lastElement = $this->Utilities->GetLastElement($Transactions);
+
+            $item->Id = $lastElement->Id + 1;
+        }      
+
+        array_push($Transactions, $item);        
+
+        $this->fileHandler->SaveFile($Transactions);
+    }
+
+    public function Edit($item){      
+
+        $Transactions = $this->GetList();
+        
+        $index = $this->Utilities->GetIndexElement($Transactions,"Id",$item->Id);
+
+        if($index !== null){
+            $Transactions[$index] = $item;
+
+            $this->fileHandler->SaveFile($Transactions);
+        }             
+    }
+
+    public function Delete($id){
+        
+        $Transactions = $this->GetList();
+
+        $index = $this->Utilities->GetIndexElement($Transactions,"Id",$id);
+
+        if(count($Transactions) > 0){
+            unset($Transactions[$index]);
+                        
+            $this->fileHandler->SaveFile($Transactions);
+        }
+    }
+
+    public function GetById($id){
+
+        $Transactions = $this->GetList();
+
+        $Transaction = $this->Utilities->SearchProperty($Transactions,"Id",$id);     
+        
+        return $Transaction[0];
+    }
+
+    public function GetList(){
+
+        $Transactions = $this->fileHandler->ReadFile();
+        
+        if ($Transactions == false) {          
+            return array();
+        }
+
+        return (array)$Transactions;
+    }  
+}
+
+?>
