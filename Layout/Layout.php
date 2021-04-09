@@ -31,7 +31,7 @@
         <body>
             <nav class="navbar navbar-dark bg-success fixed-top">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-white" href="{$Directory}index.php"><h2><strong><i class="fas fa-wallet h2"></i> TransactionsPOO</strong></h2></a>
+                    <a class="navbar-brand text-white" href="{$Directory}index.php"><h2><strong><i class="fas fa-coins h2"></i> TransactionsPOO</strong></h2></a>
                 </div>
             </nav>
             <main class="container margin-top-9">

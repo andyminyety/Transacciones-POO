@@ -1,5 +1,6 @@
 <?php
 
+date_default_timezone_set('America/Santo_Domingo');
 require_once '../Layout/Layout.php';
 require_once '../Helpers/Utilities.php';
 require_once '../FileHandler/IFileHandler.php';
@@ -36,8 +37,8 @@ if(isset($_POST["Monto"]) && isset($_POST["Descripcion"]) && isset($_POST["Fecha
     $Transactions = new Transactions($_POST["TransaccionId"],$_POST["Monto"],$_POST["Descripcion"],$_POST["Fecha"]);
 
     $Service->Edit($Transactions);
-    $Time = date('d-m-Y H:i:s');
-    $Hour = date('H:i:s');
+    $Time = date('d-m-Y');
+    $Hour = date('(h:i a)');
     $LogList = $Log->ReadFile();
     $NewLog = 'En la fecha ' . $Time . ' a las '. $Hour . ', se editó la transacción de ID: ' . $Transactions->Id . PHP_EOL;
 
@@ -91,7 +92,7 @@ if(isset($_POST["Monto"]) && isset($_POST["Descripcion"]) && isset($_POST["Fecha
 
                     <div class="mb-3">
                         <label for="Fecha" class="form-label" style="display:none">Fecha</label>
-                        <input name="Fecha" type="text" style="display:none" class="form-control" value="<?= date('d-m-Y H:i:s') ?>" id="Fecha">
+                        <input name="Fecha" type="text" style="display:none" class="form-control" value="<?= date('d-m-Y (h:i a)') ?>" id="Fecha">
                     </div>
 
                     <div class="mb-3">

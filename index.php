@@ -1,5 +1,6 @@
 <?php
 
+date_default_timezone_set('America/Santo_Domingo');
 require_once 'Transacciones/Transactions.php';
 require_once 'FileHandler/IFileHandler.php';
 require_once 'FileHandler/FileHandlerBase.php';
@@ -85,7 +86,7 @@ $Transactions = $Service->GetList();
 
                     <div class="mb-3">
                         <label for="Fecha" class="form-label" style="display:none">Fecha</label>
-                        <input name="Fecha" type="text" style="display:none" class="form-control" value="<?= date('d-m-Y H:i:s') ?>" id="Fecha">
+                        <input name="Fecha" type="text" style="display:none" class="form-control" value="<?= date('d-m-Y (h:i a)') ?>" id="Fecha">
                     </div>
 
                     <div class="mb-3">

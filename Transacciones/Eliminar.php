@@ -29,7 +29,7 @@ $Service = new ServiceFile();
         $Service->Delete($_GET["id"]);
         
         $Time = date('d-m-Y');
-        $Hour = date('H:i:s');
+        $Hour = date('(h:i a)');
         $LogList = $Log->ReadFile();
         $NewLog = 'En la fecha ' . $Time . ' a las '. $Hour . ', se eliminó la transacción de ID: ' . $Transactions->Id . PHP_EOL;
     
